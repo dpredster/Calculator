@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="600.0" prefWidth="500.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HistoryController">
+   <children>
+      <ListView fx:id="listArea" layoutX="13.0" layoutY="22.0" prefHeight="404.0" prefWidth="475.0" />
+      <Button fx:id="btnClear" layoutX="319.0" layoutY="446.0" mnemonicParsing="false" styleClass="buttonHistory" stylesheets="@Calculator.css" text="Clear" />
+      <Button fx:id="btnReturn" alignment="CENTER" contentDisplay="CENTER" layoutX="82.0" layoutY="518.0" mnemonicParsing="false" styleClass="btnDataTrans" stylesheets="@Calculator.css" textAlignment="CENTER" />
+      <Button fx:id="btnSave" layoutX="82.0" layoutY="446.0" mnemonicParsing="false" styleClass="buttonHistory" stylesheets="@Calculator.css" text="Save" />
+   </children>
+</AnchorPane>

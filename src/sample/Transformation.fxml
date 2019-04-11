@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TransformationController">
+    <children>
+        <Button fx:id="btnCFa" layoutX="107.0" layoutY="168.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Celsius to Fahrenheit" />
+        <Button fx:id="btnFaC" layoutX="107.0" layoutY="207.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Fahrenheit to Celsius " />
+        <Button fx:id="btnFMe" layoutX="107.0" layoutY="249.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Feet to Meters" />
+        <Button fx:id="btnMFe" layoutX="107.0" layoutY="291.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Meters to Feet" />
+        <Button fx:id="btnCeI" layoutX="107.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Centimeters to Inches" />
+        <Button fx:id="btnICe" layoutX="107.0" layoutY="330.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Inches to Centimeters" />
+        <Button fx:id="btnPKi" layoutX="107.0" layoutY="414.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Pounds to Kilograms" />
+        <Button fx:id="btnKiP" layoutX="107.0" layoutY="453.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="302.0" text="Kilograms to Pounds" />
+        <Button fx:id="btnClear" layoutX="205.0" layoutY="500.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Clear" />
+        <Button fx:id="btnBackCalc" layoutX="154.0" layoutY="543.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" text="Go back to calculator" />
+        <Label layoutX="165.0" layoutY="14.0" prefHeight="31.0" prefWidth="179.0" text="Data transformation">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+        <Label layoutX="85.0" layoutY="65.0" text="Enter a value">
+            <font>
+                <Font name="System Bold Italic" size="15.0" />
+            </font></Label>
+        <TextField fx:id="onEnterValue" layoutX="27.0" layoutY="86.0" prefHeight="31.0" prefWidth="218.0" />
+        <TextArea fx:id="onGetResult" editable="false" layoutX="281.0" layoutY="86.0" prefHeight="38.0" prefWidth="209.0" wrapText="true" />
+        <Label layoutX="364.0" layoutY="65.0" text="Result">
+            <font>
+                <Font name="System Bold Italic" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="onMath" layoutX="153.0" layoutY="124.0" prefHeight="31.0" prefWidth="92.0" text="0" />
+        <Label layoutX="36.0" layoutY="129.0" text="Decimal places" />
+    </children>
+</AnchorPane>
