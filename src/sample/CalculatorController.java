@@ -72,12 +72,17 @@ public class CalculatorController {
                 resultReturned = true;
             }
             else if (btnOp.getText().equals("=")) {
-                displaySumTxt.setText(equation + " " + sum);
-                equation = equation.trim() + " " + sum.trim();
-                calc.Equation(equation);
-                displayTxt.setText("" + calc.EquList());
-                // Set to true if result is shown.
-                resultReturned = true;
+                try {
+                    displaySumTxt.setText(equation + " " + sum);
+                    equation = equation.trim() + " " + sum.trim();
+                    calc.Equation(equation);
+                    displayTxt.setText("" + calc.EquList());
+                    // Set to true if result is shown.
+                    resultReturned = true;
+                }
+                catch (Exception e) {
+
+                }
             }
             else {
                 // Displays the equation on the above the main text field.
