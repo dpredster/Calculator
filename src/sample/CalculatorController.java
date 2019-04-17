@@ -19,6 +19,8 @@ public class CalculatorController {
     @FXML
     private Button btnNumber;
     @FXML
+    private Button btnEqual;
+    @FXML
     private Button btnPlusMinus;
     @FXML
     private Button btnPercent;
@@ -36,144 +38,189 @@ public class CalculatorController {
     static CalculatorList calc = new CalculatorList();
     private HistoryList history = new HistoryList();
 
-    private String sum = "0";
+    private String number1 = "";
     private String operator = "";
+    private String number2 = "";
     private String equation = "";
     private boolean resultReturned = false;
+    private String result = "";
 
 
     @FXML
     private void initialize() {
+        btnEqual.setOnAction(e -> onEqualClicked());
         btnPlusMinus.setOnAction(e -> onPlusMinusClicked());
         btnPercent.setOnAction(e -> onPercentClicked());
         btnClear.setOnAction(e -> onClearClicked());
         btnDelete.setOnAction(e -> onDeleteClicked());
         btnDataTrans.setOnAction(e -> onDataTransClicked());
-        // Load history from a file.
+        // On startup load history from a file.
         history.CalculatorListLoad();
     }
 
     @FXML
-    private void onOperationClicked(ActionEvent event) {
-        String result;
+    private void onNumberClicked(ActionEvent event) {
         if (event.getSource() instanceof Button) {
-            Button btnOp = (Button) event.getSource();
-            operator = btnOp.getText();
+            Button btnNum = (Button) event.getSource();
+            // Clear screen after result shown if an number button is
+            // clicked.
 
-            // Clear large text from display after number is entered.
-            displayTxt.clear();
-
-            if (btnOp.getText().equals("x²") || btnOp.getText().equals("√")) {
-                displaySumTxt.setText(btnOp.getText() + " " + sum);
-                equation = equation.trim() + sum.trim() + " " + btnOp.getText();
-                calc.Equation(equation);
-                displayTxt.setText("" + calc.EquList());
-                // Set to true if result is shown.
-                resultReturned = true;
-            }
-            else if (btnOp.getText().equals("=")) {
-                try {
-                    displaySumTxt.setText(equation + " " + sum);
-                    equation = equation.trim() + " " + sum.trim();
-                    calc.Equation(equation);
-                    displayTxt.setText("" + calc.EquList());
-                    // Set to true if result is shown.
-                    resultReturned = true;
-                }
-                catch (Exception e) {
-
-                }
-            }
-            else {
-                // Displays the equation on the above the main text field.
-                displaySumTxt.setText(equation + " " + sum + " " + btnOp.getText());
-            }
-
-            // Continues calculation with returned answer.
-            result = equation + " " + sum;
-            String[] equatArr = result.trim().split(" ");
-            if (equatArr.length > 1) {
-                displayTxt.setText(("" + calc.EquList()).trim());
-
-                // Remove =, x² or √ sign if present.
-                if (btnOp.getText().equals("=") || btnOp.getText().equals("x²") || btnOp.getText().equals("√")) {
-                    equation = "" + calc.EquList();
-                }
-                else {
-                    equation = "" + calc.EquList() + " " + btnOp.getText();
-                }
-                sum = ""; // Sets sum to zero.
+            if (resultReturned == true) {
+                // Clear main text display.
+                displayTxt.clear();
+                // Reset number2 and result to empty string.
+                number2 = "";
+                result = "";
+                // Reset boolean to false
                 resultReturned = false;
             }
+            if (displayTxt.getText().equals("" + calc.EquationCalc())) {
+                displayTxt.clear();
+                displayTxt.setText(displayTxt.getText() + btnNum.getText());
+            }
             else {
-                equation = equation + sum + " " + btnOp.getText();
+                displayTxt.setText(displayTxt.getText() + btnNum.getText());
+            }
+            if (operator == "") {
+                number1 = displayTxt.getText();
+            }
+
+            else {
+                // Set number variable to number value clicked.
+                number2 = displayTxt.getText();
             }
         }
     }
 
-
     @FXML
-    private void onNumberClicked(ActionEvent event) {
+    private void onOperationClicked(ActionEvent event) {
         if (event.getSource() instanceof Button) {
-            Button btnTxt = (Button) event.getSource();
-            // Clear screen after result shown if an number button is
-            // clicked.
-            if (resultReturned == true) {
-                displayTxt.clear();
-                equation = "";
-                resultReturned = false;
+            Button btnOp = (Button) event.getSource();
+
+            double num1;
+            double num2;
+            // Set symbol to math symbol clicked.
+            operator = btnOp.getText();
+            // Clear main text field.
+            displayTxt.clear();
+            if (btnOp.getText().equals("x²") || btnOp.getText().equals("√")) {
+                // If operator is x² or √ and number 1 is empty string set
+                // result to 0.
+                if (number1 == "") {
+                    result = "0";
+                }
+                else {
+                    // If not pass number and operator to array list.
+                    num1 = Double.parseDouble(number1);
+                    calc.equationList.add(new Calculator(num1, operator));
+                    result = "" + calc.EquationCalc();
+                    equation = equation + number1 + " " + btnOp.getText();
+                    // Display result in main test field.
+                    displayTxt.setText("" + result);
+                    number1 = result;
+
+                    // Set result returned to boolean true.
+                    resultReturned = true;
+                }
             }
-            if (displayTxt.getText().equals("" + calc.EquList())) {
-                displayTxt.clear();
-                displayTxt.setText(displayTxt.getText() + btnTxt.getText());
+
+            else if (number2 != "") {
+                num1 = Double.parseDouble(number1);
+                num2 = Double.parseDouble(number2);
+                calc.equationList.add(new Calculator(num1, operator, num2));
+                result = "" + calc.EquationCalc();
+
+                displayTxt.setText("" + result);
+                number1 = result;
+                equation = equation + " " + number2 + " " + btnOp.getText();
+
+                // Set result returned to boolean true.
+                resultReturned = true;
+
             }
             else {
-                displayTxt.setText(displayTxt.getText() + btnTxt.getText());
+                equation = number1 + " " + operator;
             }
-            // Save displayed number to sum.
-            sum = displayTxt.getText();
+            displaySumTxt.setText(equation);
         }
+
+    }
+
+    private void onEqualClicked() {
+        try {
+            calc.Equation(number1, operator, number2);
+            result = "" + calc.EquationCalc();
+            displayTxt.setText("" + result);
+            number1 = result;
+        }
+        catch (Exception e) {
+        }
+        displaySumTxt.setText(equation + " " + number2);
+
+        // Set result returned to boolean true.
+        resultReturned = true;
     }
 
 
     @FXML
     private void onPlusMinusClicked() {
-        // On +- click check if number is minus.
-        if (sum.contains("-")) {
-            // If true remove minus sign.
-            sum = sum.replaceFirst("-", "");
+        // On +- click check if number2 empty string.
+        if (number2 == "") {
+            // If so check if number1 is minus.
+            if (number1.contains("-")) {
+                // If true remove minus sign.
+                number1 = number1.replaceFirst("-", "");
+                displayTxt.setText(number1);
+            }
+            else {
+                // If false add minus sign.
+                number1 = "-" + number1;
+                displayTxt.setText(number1);
+            }
         }
+        // On +- click check if number2 is minus.
         else {
-            // If false add minus sign.
-            sum = "-" + sum;
+            if (number2.contains("-")) {
+                // If true remove minus sign.
+                number2 = number2.replaceFirst("-", "");
+                displayTxt.setText(number2);
+            }
+            else {
+                // If false add minus sign.
+                number2 = "-" + number2;
+                displayTxt.setText(number2);
+            }
         }
-        displayTxt.setText(sum);
+
     }
 
     private void onPercentClicked() {
         // Appends the number with the % symbol.
-        sum = sum + "%";
-        displayTxt.setText(sum);
+        if (number2 != "") {
+            number2 = number2 + "%";
+            displayTxt.setText(number2);
+        }
     }
 
     // When CLR is clicked.
     private void onClearClicked() {
-        // Clear main text display.
+        // Clear main text display and sub display.
         displayTxt.clear();
-        // Clean sub text display.
         displaySumTxt.clear();
-        // Reset equation to empty string.
+        // Reset field variables to empty string.
         equation = "";
-        // Reset operator to empty string.
         operator = "";
-        // Reset sum to zero.
-        sum = "0";
+        number1 = "";
+        number2 = "";
+        result = "";
     }
 
     private void onDeleteClicked() {
+        // Check if displayTxt String length is greater than 0 and reduce by 1
+        // when delete is clicked.
         if (displayTxt.getText().length() > 0) {
             displayTxt.setText(displayTxt.getText(0, displayTxt.getText().length() - 1));
-            sum = displayTxt.getText();
+
         }
     }
 
@@ -200,7 +247,7 @@ public class CalculatorController {
     @FXML
     // On click call History Controller.
     protected void onHistoryClicked(ActionEvent event) throws IOException {
-        // Set the extra data to pass to the second controller
+        // Pass return button text to HistoryController.
         calc.setButtonTitle("Return to Calculator");
 
         try {

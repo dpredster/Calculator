@@ -16,17 +16,15 @@
             <Insets />
          </opaqueInsets></TextField>
 
-      <TextField fx:id="displaySumTxt" alignment="CENTER_RIGHT" editable="false" layoutX="288.0" layoutY="28.0" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #fff; -fx-text-fill: #a6a6a6;">
+      <TextField fx:id="displaySumTxt" alignment="CENTER_RIGHT" editable="false" layoutX="156.0" layoutY="27.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="41.0" prefWidth="331.0" style="-fx-background-color: #fff;  -fx-text-fill: #a6a6a6;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TextField>
-
-
 	  <Button fx:id="btnOperator" layoutX="359.0" layoutY="237.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="÷" />
       <Button fx:id="btnOperator" layoutX="359.0" layoutY="293.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="×" />
       <Button fx:id="btnOperator" layoutX="359.0" layoutY="349.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="-" />
       <Button fx:id="btnOperator" layoutX="359.0" layoutY="405.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="+" />
-      <Button fx:id="btnOperator" layoutX="359.0" layoutY="461.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="=" />
+      <Button fx:id="btnEqual" layoutX="359.0" layoutY="461.0" mnemonicParsing="false" styleClass="buttonOther" stylesheets="@Calculator.css" text="=" />
       <Button fx:id="btnDelete" layoutX="359.0" layoutY="181.0" mnemonicParsing="false" styleClass="buttonOther" stylesheets="@Calculator.css" text="DEL" />
       <Button fx:id="btnNumber" layoutX="253.0" layoutY="293.0" mnemonicParsing="false" onAction="#onNumberClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="9" />
       <Button fx:id="btnNumber" layoutX="253.0" layoutY="349.0" mnemonicParsing="false" onAction="#onNumberClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="6" />
@@ -43,7 +41,7 @@
       <Button fx:id="btnPercent" layoutX="42.0" layoutY="237.0" mnemonicParsing="false" styleClass="buttonOther" stylesheets="@Calculator.css" text="\%" />
       <Button fx:id="btnOperator" layoutX="253.0" layoutY="237.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="√" />
       <Button fx:id="btnOperator" layoutX="148.0" layoutY="236.0" mnemonicParsing="false" onAction="#onOperationClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="x²" />
-      <Button fx:id="btnPlusMinus" layoutX="42.0" layoutY="461.0" mnemonicParsing="false" styleClass="buttonOther" stylesheets="@Calculator.css" text="±" />
+      <Button fx:id="btnPlusMinus" layoutX="42.0" layoutY="461.0" mnemonicParsing="false" onAction="#onPlusMinusClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="±" />
       <Button fx:id="btnDataTrans" layoutX="85.0" layoutY="517.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="338.0" styleClass="btnDataTrans" stylesheets="@Calculator.css" text="Data Transformation" />
       <Button layoutX="148.0" layoutY="181.0" mnemonicParsing="false" onAction="#onHistoryClicked" styleClass="buttonOther" stylesheets="@Calculator.css" text="History" />
 

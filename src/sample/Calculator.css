@@ -1,19 +1,13 @@
 .buttonOther {
     -fx-pref-height: 50px;
     -fx-pref-width: 100px;
-/*    -fx-font-size: 20px;
-    -fx-font-weight: bold; */
 }
 .btnDataTrans {
 	-fx-pref-height: 50px;
 	-fx-pref-width: 337px;
-/*	-fx-font-size: 20px;
-    -fx-font-weight: bold; */
 }
 .buttonHistory {
 
 	-fx-pref-width: 100px;
  	-fx-pref-height: 50px;
-/*    -fx-font-size: 20px;
-	-fx-font-weight: bold; */
 }
