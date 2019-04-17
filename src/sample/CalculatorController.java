@@ -147,18 +147,24 @@ public class CalculatorController {
     }
 
     private void onEqualClicked() {
-        try {
+        // If equal is clicked without entering a two numbers and an operator or
+        // if an operator is entered with no numbers display 0 in text field.
+        if (number1 == "" || operator == "" || number2 == "") {
+            result = "0";
+            operator = "";
+        }
+        else {
+            // Pass numbers and operator to Equation().
             calc.Equation(number1, operator, number2);
             result = "" + calc.EquationCalc();
             displayTxt.setText("" + result);
             number1 = result;
-        }
-        catch (Exception e) {
-        }
-        displaySumTxt.setText(equation + " " + number2);
 
-        // Set result returned to boolean true.
-        resultReturned = true;
+            displaySumTxt.setText(equation + " " + number2);
+
+            // Set result returned to boolean true.
+            resultReturned = true;
+        }
     }
 
 
